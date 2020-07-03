@@ -21,7 +21,7 @@ public class PhoneBookController {
 	@RequestMapping("/writeForm")
 	public String writeForm() {
 		
-		return "/WEB-INF/views/writeForm.jsp";
+		return "writeForm";
 	}
 	
 	@RequestMapping("/list")
@@ -32,7 +32,7 @@ public class PhoneBookController {
 		
 		model.addAttribute("pList", pList);
 		
-		return "/WEB-INF/views/list.jsp";
+		return "list";
 		
 	}
 	
@@ -57,7 +57,7 @@ public class PhoneBookController {
 	  
 	  model.addAttribute("person", person);
 	  
-	  return "/WEB-INF/views/updateForm.jsp"; }
+	  return "updateForm"; }
 	 
 	
 	//@PathVariable("no") int personId 사용방법!!!!!!
