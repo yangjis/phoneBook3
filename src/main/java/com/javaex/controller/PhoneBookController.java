@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -44,21 +45,36 @@ public class PhoneBookController {
 		phoneDao.personInsert(personVo);
 		
 		return "redirect:/phone/list";
-		
 	}
 	
-	@RequestMapping("/updateForm")
-	public String updateForm(Model model, @RequestParam("pid") int personId) {
-		System.out.println("/phone/updateForm");
-		System.out.println(personId);
-		
-		PersonVo person = phoneDao.getPerson(personId);
-		System.out.println(person.toString());
-		
-		model.addAttribute("person", person);
-		
-		return "/WEB-INF/views/updateForm.jsp";
-	}
+	
+	  @RequestMapping("/updateForm") public String updateForm(Model
+	  model, @RequestParam("pid") int personId) {
+	  System.out.println("/phone/updateForm"); System.out.println(personId);
+	  
+	  PersonVo person = phoneDao.getPerson(personId);
+	  System.out.println(person.toString());
+	  
+	  model.addAttribute("person", person);
+	  
+	  return "/WEB-INF/views/updateForm.jsp"; }
+	 
+	
+	//@PathVariable("no") int personId 사용방법!!!!!!
+	/*
+	 * @RequestMapping(value = "/updateForm/{no}", method =
+	 * {RequestMethod.GET,RequestMethod.POST}) public String updateForm(Model
+	 * model,@PathVariable("no") int personId) {
+	 * System.out.println("/phone/updateForm"); System.out.println(personId);
+	 * 
+	 * PersonVo person = phoneDao.getPerson(personId);
+	 * System.out.println(person.toString());
+	 * 
+	 * model.addAttribute("person", person);
+	 * 
+	 * return "/WEB-INF/views/updateForm.jsp"; }
+	 */
+	 
 	
 	@RequestMapping("/update")
 	public String update(@ModelAttribute PersonVo personVo) {
@@ -77,6 +93,16 @@ public class PhoneBookController {
 		phoneDao.personDeletSe(personId);
 		
 		return "redirect:/phone/list";
+	}
+	
+	
+	
+	
+	
+	@RequestMapping("/test/{no}")
+	public String test(@PathVariable("no") int personId) {
+		System.out.println(personId);
+		return "/WEB-INF/";
 	}
 	
 	

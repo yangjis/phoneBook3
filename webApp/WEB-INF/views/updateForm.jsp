@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>guestBook3</title>
 </head>
 <body>
 	<h1>전화번호 수정용</h1>
@@ -13,7 +13,7 @@
 		전화번호를 수정하려면<br>
 		아래 항목을 수정하고 "수정" 버튼을 클릭하세요.
 	</p>
-	<form action="/phoneBook3/phone/update" method="get">
+	<form action="${pageContext.request.contextPath }/phone/update" method="get">
 		이름(name): <input type="text" name="name" value="${person.name }"><br>
 		핸드폰(hp): <input type="text" name="hp" value="${person.hp }"><br>
 		회사(company): <input type="text" name="company" value="${person.company }"><br>
@@ -22,7 +22,7 @@
 	</form>
 		
 	<p>
-		<a href="/phoneBook3/phone/list">리스트 바로가기</a>
+		<a href="${pageContext.request.contextPath }/phone/list">리스트 바로가기</a>
 	</p>
 
 </body>
