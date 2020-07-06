@@ -1,5 +1,8 @@
 package com.javaex.vo;
 
+import org.springframework.stereotype.Repository;
+
+@Repository
 public class PersonVo {
 	
 	private int person_Id;

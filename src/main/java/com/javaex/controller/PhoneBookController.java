@@ -35,7 +35,6 @@ public class PhoneBookController {
 		model.addAttribute("pList", pList);
 
 		return "list";
-
 	}
 
 	@RequestMapping("/write")
@@ -98,7 +97,7 @@ public class PhoneBookController {
 	@RequestMapping("/test/{no}")
 	public String test(@PathVariable("no") int personId) {
 		System.out.println(personId);
-		return "/WEB-INF/";
+		return "index";
 	}
 
 }
