@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>guestBook3</title>
+<title>phoneBook3</title>
 </head>
 <body>
 	<h1>전화번호 수정용</h1>
