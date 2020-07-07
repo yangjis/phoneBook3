@@ -28,11 +28,23 @@ public class PhoneDao {
 		return pList;
 
 	}
-	
-	//수정폼에 뿌려주기 위한 데이터
+
+	// 수정폼에 뿌려주기 위한 데이터
 	public PersonVo getData(int person_id) {
 		PersonVo vo = sqlSession.selectOne("phonebook.getData", person_id);
 		return vo;
+	}
+
+	// 수정폼에 뿌려주기 위한 데이터
+	//데이터를 맵으로 받아서 화면단에 뿌려보자
+	public Map<String, Object> getData2(int person_id) {
+		Map<String, Object> mapData = sqlSession.selectOne("phonebook.getData2", person_id);
+		
+		System.out.println(mapData.get("PERSON_ID"));
+		System.out.println(mapData.get("NAME"));
+		System.out.println(mapData.get("HP"));
+		System.out.println(mapData.get("COMPANY"));
+		return mapData;
 	}
 
 	// 사람 추가
@@ -44,7 +56,8 @@ public class PhoneDao {
 	}
 
 	// 사람 추가2
-	//프레임워크 중 맵을 사용해보자.
+	// 프레임워크 중 맵을 사용해보자.
+	//우리가 맵의 키값과 데이터값을 넣어줄때는 우리가 지정한 키값을 이용해 데이터를 꺼내면 된다.
 	public int personInsert2(String name, String hp, String company) {
 		int count;
 
@@ -65,9 +78,9 @@ public class PhoneDao {
 	}
 
 	// 사람 삭제
-	public int personDelet(int person_id) { 
-		  int count = sqlSession.delete("phonebook.delete",person_id);
-		  return count; 
-	 }
+	public int personDelet(int person_id) {
+		int count = sqlSession.delete("phonebook.delete", person_id);
+		return count;
+	}
 
 }

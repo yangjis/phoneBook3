@@ -22,12 +22,12 @@
 		]]>
 	</select> -->
 	
+	
 	<insert id="insert" parameterType="com.javaex.vo.PersonVo" >  
 	    <![CDATA[
 	         insert into person values(SEQ_PERSON_ID.nextval, #{name}, #{hp}, #{company})
 	    ]]>
 	</insert>
-	
 	
 	<insert id="insert2" parameterType="Map" >  
 	   <![CDATA[
@@ -35,27 +35,22 @@
 	   ]]>
 	</insert>
 
-	
 	<select id="selectList" parameterType="com.javaex.vo.PersonVo" resultType="com.javaex.vo.PersonVo">
 		<![CDATA[
-			select person_id, 
-				   name, 
-				   hp, 
-				   company 
-			from person 
-			order by person_id desc
+			select person_id, name, hp, company from person order by person_id desc
 		]]>
 	</select>
 	
 	<select id="getData" parameterType="com.javaex.vo.PersonVo" resultType="com.javaex.vo.PersonVo">
 		<![CDATA[
-			select person_id, 
-				   name, 
-				   hp, 
-				   company 
-			from person
-			where person_id = #{person_id} 
+			select person_id, name, hp, company from person where person_id = #{person_id} 
 		]]>
+	</select>
+	
+	<select id = "getData2" parameterType="int" resultType = "Map">
+	<![CDATA[
+		select person_id, name, hp, company from person where person_id = #{person_id} 
+	]]>
 	</select>
 
 	<update id="update" parameterType="com.javaex.vo.PersonVo" >  
@@ -69,6 +64,7 @@
 		delete from person where person_id = #{person_id} 
 	]]>
 	</delete>
+	
 
 </mapper>
 
