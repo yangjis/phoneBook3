@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.javaex.dao.PhoneDao;
@@ -25,68 +26,61 @@ public class PhoneBookController {
 
 		return "writeForm";
 	}
+	
+	@RequestMapping("/insert2")
+	public String writeForm2(@RequestParam("name") String name,
+							 @RequestParam("hp") String hp,
+							 @RequestParam("company") String company) {
+		System.out.println("insert4");
+		
+		phoneDao.personInsert2(name, hp, company);
+		return "redirect:/phone/list";
+	}
 
 	@RequestMapping("/list")
 	public String list(Model model) {
+		System.out.println("list");
 
 		List<PersonVo> pList = phoneDao.getPersonList();
-		System.out.println(pList.toString());
-
 		model.addAttribute("pList", pList);
 
 		return "list";
 	}
 
-	/*
-	 * @RequestMapping("/write") public String write(@ModelAttribute PersonVo
-	 * personVo) { System.out.println("/phone/write");
-	 * System.out.println(personVo.toString());
-	 * 
-	 * phoneDao.personInsert(personVo);
-	 * 
-	 * return "redirect:/phone/list"; }
-	 * 
-	 * @RequestMapping("/updateForm") public String updateForm(Model
-	 * model, @RequestParam("pid") int personId) {
-	 * System.out.println("/phone/updateForm"); System.out.println(personId);
-	 * 
-	 * PersonVo person = phoneDao.getPerson(personId);
-	 * System.out.println(person.toString());
-	 * 
-	 * model.addAttribute("person", person);
-	 * 
-	 * return "updateForm"; }
-	 * 
-	 * // @PathVariable("no") int personId 사용방법!!!!!!
-	 * 
-	 * @RequestMapping(value = "/updateForm/{no}", method =
-	 * {RequestMethod.GET,RequestMethod.POST}) public String updateForm(Model
-	 * model,@PathVariable("no") int personId) {
-	 * System.out.println("/phone/updateForm"); System.out.println(personId);
-	 * 
-	 * PersonVo person = phoneDao.getPerson(personId);
-	 * System.out.println(person.toString());
-	 * 
-	 * model.addAttribute("person", person);
-	 * 
-	 * return "/WEB-INF/views/updateForm.jsp"; }
-	 * 
-	 * 
-	 * @RequestMapping("/update") public String update(@ModelAttribute PersonVo
-	 * personVo) { System.out.println("/phone/update");
-	 * System.out.println(personVo.toString()); phoneDao.personUpdate(personVo);
-	 * 
-	 * return "redirect:/phone/list"; }
-	 * 
-	 * @RequestMapping("/delete") public String delete(@RequestParam("pid") int
-	 * personId) { System.out.println("/phone/delete");
-	 * System.out.println(personId);
-	 * 
-	 * phoneDao.personDeletSe(personId);
-	 * 
-	 * return "redirect:/phone/list"; }
-	 * 
-	 * @RequestMapping("/test/{no}") public String test(@PathVariable("no") int
-	 * personId) { System.out.println(personId); return "index"; }
-	 */
+	
+	  @RequestMapping(value = "/insert", method = {RequestMethod.GET, RequestMethod.POST}) 
+	  public String insert(@ModelAttribute PersonVo personVo) {
+		  System.out.println("insert");
+		  
+		  phoneDao.personInsert(personVo);
+		  return "redirect:/phone/list"; 
+	  }
+	  
+	  @RequestMapping("/updateForm")
+	  public String updateForm(@RequestParam("pid") int person_id, Model model) {
+		  System.out.println("updateForm");
+		  
+		  PersonVo vo = phoneDao.getData(person_id);
+		  model.addAttribute("person", vo);
+		  return "updateForm";
+	  }
+	  
+	  @RequestMapping("/update")
+	  public String update(@ModelAttribute PersonVo personVo) {
+		  System.out.println("update");
+		  
+		  phoneDao.personUpdate(personVo);
+		  return "redirect:/phone/list";
+	  }
+	
+	  @RequestMapping("/delete")
+	  public String delete(@RequestParam("pid") int person_id) {
+		  System.out.println("delete");
+		  
+		  phoneDao.personDelet(person_id);
+		  return "redirect:/phone/list";
+	  }
+
+	 
+	 
 }

@@ -17,7 +17,7 @@
 		이름(name): <input type="text" name="name" value="${person.name }"><br>
 		핸드폰(hp): <input type="text" name="hp" value="${person.hp }"><br>
 		회사(company): <input type="text" name="company" value="${person.company }"><br>
-		<input type="hidden" name="personId" value="${person.personId }">
+		<input type="hidden" name="person_id" value="${person.person_id }">
 		<button type="submit">수정</button>
 	</form>
 		

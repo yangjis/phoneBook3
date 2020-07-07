@@ -2,9 +2,41 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="phonebook">
-						<!--던져주는 데이터의 타입  -->		<!--받는 데이터 타입  -->
-	<select id="getList" parameterType = "com.javaex.vo.PersonVo" resultType = "com.javaex.vo.PersonVo">
-	<!-- 이 구문안에는 전부 쿼리문이니 태그로 읽지 말아라 예)<>+=요런거 -->
+
+	<!-- <resultMap id="resultMapPersonVo" type="com.javaex.vo.PersonVo">
+		<result column="person_id" property="person_id" />
+		<result column="name" property="name"/>
+		<result column="hp" property="hp" />
+		<result column="company" property="company" />
+	</resultMap>
+
+	<select id="selectList" resultMap="resultMapPersonVo">
+		이 구문안에는 전부 쿼리문이니 태그로 읽지 말아라 예)<>+=요런거
+		<![CDATA[
+			select person_id, 
+				   name, 
+				   hp, 
+				   company 
+			from person 
+			order by person_id desc
+		]]>
+	</select> -->
+	
+	<insert id="insert" parameterType="com.javaex.vo.PersonVo" >  
+	    <![CDATA[
+	         insert into person values(SEQ_PERSON_ID.nextval, #{name}, #{hp}, #{company})
+	    ]]>
+	</insert>
+	
+	
+	<insert id="insert2" parameterType="Map" >  
+	   <![CDATA[
+	        insert into person values(SEQ_PERSON_ID.nextval, #{name}, #{hp}, #{company})
+	   ]]>
+	</insert>
+
+	
+	<select id="selectList" parameterType="com.javaex.vo.PersonVo" resultType="com.javaex.vo.PersonVo">
 		<![CDATA[
 			select person_id, 
 				   name, 
@@ -15,6 +47,28 @@
 		]]>
 	</select>
 	
+	<select id="getData" parameterType="com.javaex.vo.PersonVo" resultType="com.javaex.vo.PersonVo">
+		<![CDATA[
+			select person_id, 
+				   name, 
+				   hp, 
+				   company 
+			from person
+			where person_id = #{person_id} 
+		]]>
+	</select>
+
+	<update id="update" parameterType="com.javaex.vo.PersonVo" >  
+	<![CDATA[
+		update person set name = #{name}, hp = #{hp}, company = #{company} where person_id = #{person_id}
+	]]>
+	</update>
+	
+	<delete id="delete" parameterType="int">
+	<![CDATA[
+		delete from person where person_id = #{person_id} 
+	]]>
+	</delete>
 
 </mapper>
 

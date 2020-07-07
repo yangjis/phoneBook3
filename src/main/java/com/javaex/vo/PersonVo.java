@@ -4,7 +4,7 @@ import org.springframework.stereotype.Repository;
 
 public class PersonVo {
 	
-	private int person_Id;
+	private int person_id;
 	private String name;
 	private String hp;
 	private String company;
@@ -18,18 +18,18 @@ public class PersonVo {
 	}
 	
 	public PersonVo(int personId, String name, String hp, String company) {
-		this.person_Id = personId;
+		this.person_id = personId;
 		this.name = name;
 		this.hp = hp;
 		this.company = company;
 	}
 
-	public int getPersonId() {
-		return person_Id;
+	public int getPerson_id() {
+		return person_id;
 	}
 
-	public void setPersonId(int personId) {
-		this.person_Id = personId;
+	public void setPerson_id(int personId) {
+		this.person_id = personId;
 	}
 
 	public String getName() {
@@ -58,7 +58,7 @@ public class PersonVo {
 
 	@Override
 	public String toString() {
-		return "PersonVo [personId=" + person_Id + ", name=" + name + ", hp=" + hp + ", company=" + company + "]";
+		return "PersonVo [personId=" + person_id + ", name=" + name + ", hp=" + hp + ", company=" + company + "]";
 	}
 
 }

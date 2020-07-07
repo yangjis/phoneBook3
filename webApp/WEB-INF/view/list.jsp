@@ -33,9 +33,9 @@
 		</tr>
 		<tr>
 			<td>
-			<a href="${pageContext.request.contextPath }/phone/updateForm?pid=${vo.personId }">수정</a>
+			<a href="${pageContext.request.contextPath }/phone/updateForm?pid=${vo.person_id }">수정</a>
 			</td>
-			<td><a href="${pageContext.request.contextPath }/phone/delete?pid=${vo.personId }">삭제</a></td>
+			<td><a href="${pageContext.request.contextPath }/phone/delete?pid=${vo.person_id }">삭제</a></td>
 		</tr>
 	</table>
 	<br>
